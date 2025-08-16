@@ -11,32 +11,30 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Open Source',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Open Pocket is open source and available under MIT license. 🚀
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Focus on what matters',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+      	Open Pocket let's you save your url's and access them anywhere.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'REST API for external integration',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+	Open Pocket will allow you to integrate third party
+	applications, so you can choose the client of your choice.  
       </>
     ),
   },
