@@ -59,6 +59,9 @@ pocket:
 | article\_id  | BIGINT, Foreign Key → Articles.item\_id | Indexed, NOT NULL                |
 | tag         | VARCHAR(100)                        |                                    |
 
+_Primary Key_ = `(user_id, article_id)`
+
+
 ---
 
 ## Images
