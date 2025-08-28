@@ -44,9 +44,10 @@ pocket:
 
 | Attribute   | Data Type / Properties  | Constraints / Indexing            |
 |-------------|--------------------------|------------------------------------|
-| provider    | VARCHAR(50)             | NOT NULL                           |
-| uid         | BIGINT, Primary Key     | NOT NULL, UNIQUE                   |
-| email       | VARCHAR(255)            | UNIQUE, Indexed                    |
+| provider    | TEXT                     | NOT NULL                           |
+| uid         | SERIAL, _Primary Key_    | NOT NULL, UNIQUE                   |
+| email       | TEXT                     | UNIQUE, _Indexed_                  |
+| name        | TEXT                     | NOT NULL                           |
 
 ---
 
