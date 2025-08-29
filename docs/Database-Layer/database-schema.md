@@ -60,6 +60,11 @@ pocket:
 | article\_id  | INTEGER, Foreign Key → Articles.item\_id | NOT NULL                |
 | tag\_name    | TEXT                                    |  Indexed, NOT NULL        |
 
+Further Indexes and Constraints:
+
+- Index on `(user_id, article_id)`
+- Index on `(user_id, tag_name)`
+
 Notes:
 
 - this table basically contains: an article with `tag=tag_name` on
