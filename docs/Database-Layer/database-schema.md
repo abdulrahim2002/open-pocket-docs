@@ -64,6 +64,8 @@ Further Indexes and Constraints:
 
 - Index on `(user_id, article_id)`
 - Index on `(user_id, tag_name)`
+- `(tag_name, user_id, article_id)` are UNIQUE combined. Therefore, no
+  duplicate tag is allowed
 
 Notes:
 
