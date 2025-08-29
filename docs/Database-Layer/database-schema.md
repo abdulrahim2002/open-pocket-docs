@@ -51,16 +51,41 @@ pocket:
 
 ---
 
-## Tagging
+## tags
 
 | Attribute   | Data Type / Properties             | Constraints / Indexing            |
 |-------------|-------------------------------------|------------------------------------|
-| user\_id     | BIGINT, Foreign Key → Users.uid     | Indexed, NOT NULL                  |
-| article\_id  | BIGINT, Foreign Key → Articles.item\_id | Indexed, NOT NULL                |
-| tag         | VARCHAR(100)                        |                                    |
+| tag\_id      | SERIAL, Primary Key                     | NOT NULL, UNIQUE                  |
+| user\_id     | INTEGER, Foreign Key → Users.user\_id    | NOT NULL                  |
+| article\_id  | INTEGER, Foreign Key → Articles.item\_id | NOT NULL                |
+| tag\_name    | TEXT                                    |  Indexed, NOT NULL        |
 
-_Primary Key_ = `(user_id, article_id)`
+Notes:
 
+- this table basically contains: an article with `tag=tag_name` on
+  article with article\_id, belonging to user of user\_id
+- the fields: (tag\_name, user\_id, article\_id) combined must be unique
+- we will be required to handle queries of the form:
+
+```sql
+-- get all tags on an article with `article_id` and which belongs to
+-- user with `user_id`
+SELECT tag_name FROM tags WHERE article_id=123 AND user_id=123;
+```
+
+- therefore, it is beneficial to create an index on (article\_id, user\_id)
+
+- here's another use case:
+
+find all articles belonging to user with `user_id` and with given
+`tag_name`:
+
+```sql
+SELECT article_id FROM tags WHERE user_id=123 AND tag_name="xyz";
+```
+
+- therefore it might be beneficial to make an index on (user\_id,
+  tag\_name) columns
 
 ---
 
