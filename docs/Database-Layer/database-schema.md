@@ -40,14 +40,74 @@ pocket:
 
 ---
 
-## Users
+## users
 
 | Attribute   | Data Type / Properties  | Constraints / Indexing            |
 |-------------|--------------------------|------------------------------------|
 | provider    | TEXT                     | NOT NULL                           |
 | uid         | SERIAL, _Primary Key_    | NOT NULL, UNIQUE                   |
 | email       | TEXT                     | UNIQUE, _Indexed_                  |
+| hashed\_password | TEXT                |                                    |
 | name        | TEXT                     | NOT NULL                           |
+
+### details:
+
+#### login and signup
+
+We should be able to support both traditional `email-password` based
+logins as well as `o-auth` based logins/signups.
+
+1. traditional login and signup
+
+When the user signs up, firstly we ask for the following information:
+
+```
+name | email | password 
+```
+
+After, we have this information, then we use something like:
+
+```sql
+-- insert the newly created user into the system
+INSERT INTO users (provider, email, hashed_password, name) 
+VALUES ('open-pocket', 'xyz@mail.com, '12d8287g1', 'xyz');
+```
+
+Note that `open-pocket` is the provider here, since, the user is
+registering through our platform. And `user_id` will be generated
+autormatically.
+
+Password hashing should be done in the application using
+[`bcrypt`](https://www.npmjs.com/package/bcrypt).
+
+
+Now when the user tries to login.
+
+We ask for the following information:
+
+```
+email | password
+```
+
+Then we do something like:
+
+```sql
+-- find the hashed_password for user with email=email
+SELECT hashed_password FROM users WHERE email=[supplied_email]
+```
+
+If this query executes successfully, but returns no rows. Then, the user
+is not present in the system (not registered). Otherwise, the
+`hashed_password` must match `hash_of_supplied_password` for successfull
+login.
+
+2. O-auth  login and signup
+
+O-auth logins will be supported in the future, once we are done with
+`email-password` logins. The `provider` field will store the O-auth
+provider's name (e.g. google, github etc.). And additional fields will
+be added as required.
+
 
 ---
 
