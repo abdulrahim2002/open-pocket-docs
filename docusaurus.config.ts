@@ -77,7 +77,7 @@ const config: Config = {
       title: 'Open Pocket',
       logo: {
         alt: 'Open Pocket Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
