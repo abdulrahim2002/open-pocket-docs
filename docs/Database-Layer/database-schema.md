@@ -31,8 +31,6 @@ All schemas need to ensure that we support required
 | time\_favorited          | TIMESTAMP                  |                                            |
 | top\_image\_url           | TEXT                       |                                            |
 | author\_id               | BIGINT, Foreign Key → Authors.id | Indexed                                |
-| time\_to\_read            | INTEGER, Calculated        | Generated from word\_count                  |
-| listen\_duration\_estimate| INTEGER, Calculated        | Generated from word\_count                  |
 
 ---
 
