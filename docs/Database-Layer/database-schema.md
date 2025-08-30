@@ -5,25 +5,21 @@ sidebar_position: 2
 
 # Database schema
 
-We need to keep in mind the [operations](/docs/category/api-spec) we
-need to support.
+All schemas need to ensure that we support required
+[operations](/docs/category/api-spec).
 
 
-[Andy](https://github.com/andyw8) described the [following
-schema](https://github.com/open-pocket/open-pocket/issues/2) for open
-pocket:
-
-## Articles
+## articles
 
 | Attribute               | Data Type / Properties     | Constraints / Indexing                    |
 |--------------------------|----------------------------|--------------------------------------------|
 | item\_id                 | BIGINT, Primary Key        | NOT NULL, AUTO INCREMENT, UNIQUE           |
 | user\_id                 | BIGINT, Foreign Key → Users.uid | Indexed, NOT NULL                     |
-| status                  | SMALLINT                   |                                            |
-| favorite                | BOOLEAN                    | DEFAULT false                              |
+| status                   | SMALLINT                   |                                            |
+| favorite                 | BOOLEAN                    | DEFAULT false                              |
 | resolved\_title          | TEXT                       |                                            |
 | resolved\_url            | TEXT                       |                                            |
-| excerpt                 | TEXT                       |                                            |
+| excerpt                  | TEXT                       |                                            |
 | is\_article              | BOOLEAN                    | DEFAULT false                              |
 | is\_index                | BOOLEAN                    | DEFAULT false                              |
 | has\_video               | BOOLEAN                    | DEFAULT false                              |
@@ -45,7 +41,7 @@ pocket:
 | Attribute   | Data Type / Properties  | Constraints / Indexing            |
 |-------------|--------------------------|------------------------------------|
 | provider    | TEXT                     | NOT NULL                           |
-| uid         | SERIAL, _Primary Key_    | NOT NULL, UNIQUE                   |
+| user\_id| SERIAL, _Primary Key_    | NOT NULL, UNIQUE                   |
 | email       | TEXT                     | UNIQUE, _Indexed_                  |
 | hashed\_password | TEXT                |                                    |
 | name        | TEXT                     | NOT NULL                           |
@@ -184,7 +180,7 @@ SELECT article_id FROM tags WHERE user_id=123 AND tag_name="xyz";
 
 ---
 
-## Authors
+## authors
 
 | Attribute   | Data Type / Properties  | Constraints / Indexing            |
 |-------------|--------------------------|------------------------------------|
