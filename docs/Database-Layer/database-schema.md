@@ -11,10 +11,10 @@ All schemas need to ensure that we support required
 
 ## articles
 
-| Attribute               | Data Type / Properties     | Constraints / Indexing                    |
+| Attribute               | Data Type / Properties      | Constraints / Indexing                    |
 |--------------------------|----------------------------|--------------------------------------------|
 | item\_id                 | BIGINT, Primary Key        | NOT NULL, AUTO INCREMENT, UNIQUE           |
-| user\_id                 | BIGINT, Foreign Key → Users.uid | Indexed, NOT NULL                     |
+| user\_id                 | BIGINT, Foreign Key → users.user\_id | Indexed, NOT NULL                     |
 | status                   | SMALLINT                   |                                            |
 | favorite                 | BOOLEAN                    | DEFAULT false                              |
 | resolved\_title          | TEXT                       |                                            |
@@ -27,10 +27,9 @@ All schemas need to ensure that we support required
 | word\_count              | INTEGER                    |                                            |
 | time\_added              | TIMESTAMP                  | DEFAULT now()                              |
 | time\_updated            | TIMESTAMP                  |                                            |
-| time\_read               | TIMESTAMP                  |                                            |
 | time\_favorited          | TIMESTAMP                  |                                            |
-| top\_image\_url           | TEXT                       |                                            |
-| author\_id               | BIGINT, Foreign Key → Authors.id | Indexed                                |
+| top\_image\_url          | TEXT                       |                                            |
+| author\_id               | BIGINT, Foreign Key → authors.author\_id | Indexed                      |
 
 ---
 
@@ -39,7 +38,7 @@ All schemas need to ensure that we support required
 | Attribute   | Data Type / Properties  | Constraints / Indexing            |
 |-------------|--------------------------|------------------------------------|
 | provider    | TEXT                     | NOT NULL                           |
-| user\_id| SERIAL, _Primary Key_    | NOT NULL, UNIQUE                   |
+| user\_id    | SERIAL, _Primary Key_    | NOT NULL, UNIQUE                   |
 | email       | TEXT                     | UNIQUE, _Indexed_                  |
 | hashed\_password | TEXT                |                                    |
 | name        | TEXT                     | NOT NULL                           |
