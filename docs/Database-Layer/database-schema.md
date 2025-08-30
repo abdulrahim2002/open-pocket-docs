@@ -11,10 +11,10 @@ All schemas need to ensure that we support required
 
 ## articles
 
-| Attribute               | Data Type / Properties      | Constraints / Indexing                    |
+| Attribute               | Data Type / Properties      | Constraints / Indexing                     |
 |--------------------------|----------------------------|--------------------------------------------|
 | item\_id                 | BIGINT, Primary Key        | NOT NULL, AUTO INCREMENT, UNIQUE           |
-| user\_id                 | BIGINT, Foreign Key → users.user\_id | Indexed, NOT NULL                     |
+| user\_id                 | BIGINT, Foreign Key → users.user\_id | Indexed, NOT NULL                |
 | status                   | SMALLINT                   |                                            |
 | favorite                 | BOOLEAN                    | DEFAULT false                              |
 | resolved\_title          | TEXT                       |                                            |
@@ -30,6 +30,24 @@ All schemas need to ensure that we support required
 | time\_favorited          | TIMESTAMP                  |                                            |
 | top\_image\_url          | TEXT                       |                                            |
 | author\_id               | BIGINT, Foreign Key → authors.author\_id | Indexed                      |
+
+
+#### Details:
+
+- this is the main and most important table, which stores information
+  about the stored links.
+- we anticipate queries of the form
+
+```sql
+-- find all articles that belong to user with user_id -> 123
+SELECT * FROM articles WHERE user_id = 123 ORDER BY TIME ADDED
+```
+
+- or we might need articles that were added after "1 january 2024";
+
+```sql
+SELECT * FROM articles WHERE user_id = 123 AND time_added > '2024-01-01';
+```
 
 ---
 
