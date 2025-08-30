@@ -25,12 +25,11 @@ All schemas need to ensure that we support required
 | has\_video               | BOOLEAN                    | DEFAULT false                              |
 | has\_image               | BOOLEAN                    | DEFAULT false                              |
 | word\_count              | INTEGER                    |                                            |
-| time\_added              | TIMESTAMP                  | DEFAULT now()                              |
+| time\_added              | TIMESTAMP                  | Indexed, DEFAULT now()                     |
 | time\_updated            | TIMESTAMP                  |                                            |
 | time\_favorited          | TIMESTAMP                  |                                            |
 | top\_image\_url          | TEXT                       |                                            |
 | author\_id               | BIGINT, Foreign Key → authors.author\_id | Indexed                      |
-
 
 #### Details:
 
@@ -40,7 +39,7 @@ All schemas need to ensure that we support required
 
 ```sql
 -- find all articles that belong to user with user_id -> 123
-SELECT * FROM articles WHERE user_id = 123 ORDER BY TIME ADDED
+SELECT * FROM articles WHERE user_id = 123 ORDER BY time_added
 ```
 
 - or we might need articles that were added after "1 january 2024";
@@ -48,6 +47,8 @@ SELECT * FROM articles WHERE user_id = 123 ORDER BY TIME ADDED
 ```sql
 SELECT * FROM articles WHERE user_id = 123 AND time_added > '2024-01-01';
 ```
+
+- we may also need to filter by `status` and `favorite`
 
 ---
 

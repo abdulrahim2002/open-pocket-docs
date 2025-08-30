@@ -8,6 +8,7 @@ const config: Config = {
   title: 'Open Pocket',
   tagline: 'An open source, cloud based bookmark manager and read it later solution',
   favicon: 'img/favicon.ico',
+  trailingSlash: true,
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
