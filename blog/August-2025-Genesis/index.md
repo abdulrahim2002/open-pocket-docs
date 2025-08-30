@@ -1,7 +1,7 @@
 ---
 slug: genesis
 title: Genesis
-authors: [openpocket]
+authors: "openpocket"
 tags: [OpenPocket]
 ---
 

@@ -1,6 +1,5 @@
 openpocket:
   name: Open Pocket Team
   title: Open Pocket Team
-  url: /blog
-  image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Placeholder_Person_with_black_tie.jpg/640px-Placeholder_Person_with_black_tie.jpg"
+  image_url: "img/logo.png"
   page: false
