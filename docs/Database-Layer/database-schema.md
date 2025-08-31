@@ -22,8 +22,8 @@ All schemas need to ensure that we support required
 | excerpt                  | TEXT                       |                                            |
 | is\_article              | BOOLEAN                    | DEFAULT false                              |
 | is\_index                | BOOLEAN                    | DEFAULT false                              |
-| has\_video               | BOOLEAN                    | DEFAULT false                              |
-| has\_image               | BOOLEAN                    | DEFAULT false                              |
+| has\_video               | SMALLINT                   | DEFAULT false                              |
+| has\_image               | SMALLINT                   | DEFAULT false                              |
 | word\_count              | INTEGER                    |                                            |
 | time\_added              | TIMESTAMP                  | Indexed, DEFAULT now()                     |
 | time\_updated            | TIMESTAMP                  |                                            |
