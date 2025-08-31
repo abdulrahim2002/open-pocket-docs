@@ -31,6 +31,37 @@ All schemas need to ensure that we support required
 | top\_image\_url          | TEXT                       |                                            |
 | author\_id               | BIGINT, Foreign Key → authors.author\_id | Indexed                      |
 
+### Description of the fields
+
+1. `item_id`: Unique identifier for the saved item 
+2. `user_id`: id of the user to which this article/item belongs
+3. `status`:  0 = active, 1 = archived, 2 = deleted
+4. `favorite`: weather article is favorited by the user. 1=favorited,
+   0=not favorited
+5. `resolved_title`: title, found by the parser/backend
+6. `resolved_url`: final URL resolved to by the parser/backend. For
+   example, by following redirects
+7. `excerpt`: excerpt of the article found by the parser/backend
+8. `is_article`: weather the item is an article
+9. `is_index`: true if parser/backedn thinks this is an index page
+    - 1=parser thinks this item is an index page
+    - 0=otherwise
+10. `has_video`:  
+    - 0=no video; 
+    - 1=has a video in the body of the article; 
+    - 2=is a video
+11. `has_image`: 
+    - 0=no image; 
+    - 1=has an image in the body of the article; 
+    - 2=is an image
+12. `word_count`: number of words in the article
+13. `time_added`: timestamp (with timezone info), at which the article was added
+14. `time_updated`: timestamp (with timezone info), at which the article was 
+    last updated (like last read/opened)
+15. `time_favorited`: time at which the article was favorited
+16. `top_image_url`: URL of the first found image in html page
+17. `author_id`: id of the author of the article
+
 #### Details:
 
 - this is the main and most important table, which stores information
