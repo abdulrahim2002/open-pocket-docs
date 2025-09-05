@@ -121,6 +121,12 @@ The server does the following:
 - refresh tokens should also have an expiration date
 - keep the refresh token in a secure unencrypted cookie. For example a
   simple cookie with (secure=true, httponly, samesite=lax) 
+- what about the `/logout` endpoint
+- we should also ask for the `user_id/email` in `/refresh` endpoint.
+  hence, requiring the client to tell which user are they claiming.
+  Without this, an attacker might try to brute for all possible tokens
+  and end up with user data of some users.
+- rate limit the endpoint (very imp.)
 
 <!--
 final architecture decided upon
