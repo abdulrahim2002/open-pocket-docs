@@ -21,94 +21,34 @@ Now we cannot do anything with `consumer_key` yet.
 Let us take a careful look at what are the response fields that need to
 be returned.
 
-From the database's perspective, only the following fields are
 
-important:
+1.    item\_id – Unique identifier for the saved item (used in /v3/modify)
+2.    resolved\_id – Unique ID for the resolved URL (0 = not processed yet)
+3.    given\_url – The actual saved URL
+4.    resolved\_url – Final resolved URL (e.g., unshortened link)
+5.    given\_title – Title saved with the item
+6.    resolved\_title – Title Pocket parsed from the URL
+7.    favorite – 1 if favorited
+8.    status – 0 = active, 1 = archived, 2 = deleted
+9.    excerpt – First few lines of the item (articles only)
+10.    is\_article – 1 if item is an article
+11.    has\_image – 1 if it has images, 2 if it's an image
+12.    has\_video – 1 if it has videos, 2 if it's a video
+13.    word\_count – Number of words in the article
+14.    tags – JSON object of user tags
+15.    authors – JSON object of authors
+16.    images – JSON object of images
+17.    videos – JSON object of videos
 
-1. url
-2. title
-3. tags
-4. user\_id (generated through access token)
 
-We need to perform the following operations:
 
-1. add article into the `articles` table
-2. add all the tags provided into the `tags` table (with item\_id and
-   user\_id set)
-
-Let us try to simulate a sample request. Firstly, we need a user. Let's
-insert a sample one:
-
-```sql
-INSERT INTO users (provider, "name", "email", "hashed_password") 
-VALUES ('ok','abdul1','abdul1@mail.com','112fewfi3n123oi34');
-```
-
-Now, we use the parameters we obtained from the `add` request along with
-parser/backend processing, to retrieve all relevant fields we need to
-store the `article` in `articles` table. We have the following data:
-
-```sql
-INSERT INTO articles (
-    user_id, status, favorite, resolved_title, 
-    resolved_url, excerpt, is_article, is_index, 
-    has_video, has_image, word_count, top_image_url, 
-    author_id
-) 
-VALUES (
-    17, 0, false, 'Title 1', 'https://abdulrahim.space/', 
-    'a little excerpt', true, false, 0, 0, 123, 
-    'https://topimage.com/topimage.png', 1
-);
-```
-
-Suppose we have 2 tags for this article: `fantasy`, `novel`
-
-We then insert these into the tags table.
+Firtly we observe that fields 1-13 are available in the
+[articles](https://abdulrahim2002.github.io/open-pocket-docs/docs/Database-Layer/database-schema/)
+table. Therefore, fetching them for a user would be trivial. We can just
+do something like:
 
 ```sql
-INSERT INTO tags (user_id, item_id, tag_name) VALUES (17, 8, 'fantasy');
-INSERT INTO tags (user_id, item_id, tag_name) VALUES (17, 8, 'horror');
-```
-
-And we are done. Now we have all the data we need.
-
-
----
-
-
-### Retrieval:
-
-Now let's imagine what can we do with this data. The most simple use
-case is, return few articles that belong to a particular user, to show
-it on the homepage. The tags should also appear with each article. This
-can be done simply by the following query:
-
-
-```sql
-SELECT a.item_id, a.user_id, a.resolved_url, ARRAY_AGG(t.tag_name) 
-FROM    articles a 
-            LEFT JOIN 
-        tags t 
-ON  a.item_id  = t.item_id 
-        AND 
-    a.user_id = t.user_id 
-WHERE a.user_id=17
-GROUP BY a.item_id, a.user_id;
-```
-
-Which provides us with all the articles belonging to `user_id=17`. And
-aggregating their tags.
-
-Hence, a setup like this can easily be used to get articles to show on
-the home page of the user.
-
-```sql
- item_id | user_id |       resolved_url        |    array_agg     
----------+---------+---------------------------+------------------
-       7 |      17 |                           | {NULL}
-       8 |      17 | https://abdulrahim.space/ | {fantasy,horror}
-(2 rows)
+SELECT * FROM articles WHERE user_id=user_id
 ```
 
 
