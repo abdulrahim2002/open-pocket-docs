@@ -12,6 +12,8 @@ with the proper configuration, cookies marked with Secure=true can be
 successfully transmitted and processed by your backend instances even
 when SSL is terminated at the load balancer.  How This Works
 
+<!-- truncate -->
+
 The key is that the Secure flag is about the client's connection, not
 the backend connection:
 
@@ -34,7 +36,7 @@ Client (HTTPS) → Load Balancer (SSL termination) → Backend (HTTP)
     │-- Secure cookie ----->│                         │
     │                       │-- Same cookie --------->│
     │                       │ (with X-Forwarded-Proto)│
-    │                       │                         │<- Fastify sees 
+    │                       │                         │<- Fastify sees
     │                       │                         │   X-Forwarded-Proto: https
     │                       │                         │   and treats cookie as secure
 
