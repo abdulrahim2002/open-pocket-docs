@@ -6,28 +6,18 @@ sidebar_position: 1
 
 ## Retriving a user's pocket data
 
-Pocket's `/v3/get` endpoint is a single call that is incredibly versatile.  
-Examples of requests you can make:
-
-- Retrieve a user’s list of unread items  
-- Sync data that has changed since the last time your app checked  
-- Retrieve paged results sorted by the most recent saves  
-- Retrieve just videos that the user has saved  
-- Search for a given keyword in item’s title and URL  
-- Retrieve all items for a given domain  
-- And more  
+To retrieve item(s) from a user’s Pocket list, you’ll make a request to
+the `/v3/get` endpoint.
+It also allows you to add filters on top of retrieved items.
 
 ---
 
 ## Required Permissions
 
-To use the `/v3/get` endpoint, your consumer key must have the **"Retrieve"** permission.
+To use the `/v1/get` endpoint, your consumer key must have the
+**"Retrieve"** permission.
 
 ---
-
-## Retrieving a User's Pocket Data
-
-To retrieve item(s) from a user’s Pocket list, you’ll make a request to the `/v3/get` endpoint.
 
 ### Method URL
 
