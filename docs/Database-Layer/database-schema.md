@@ -17,6 +17,8 @@ All schemas need to ensure that we support required
 | user\_id                 | BIGINT, Foreign Key → users.user\_id | Indexed, NOT NULL                |
 | status                   | SMALLINT                   |                                            |
 | favorite                 | BOOLEAN                    | DEFAULT false                              |
+| given\_url               | TEXT                       | NOT NULL                                   |
+| given\_title             | TEXT                       |                                            |
 | resolved\_title          | TEXT                       |                                            |
 | resolved\_url            | TEXT                       |                                            |
 | excerpt                  | TEXT                       |                                            |
