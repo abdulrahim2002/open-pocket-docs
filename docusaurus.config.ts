@@ -25,7 +25,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'abdulrahim2002', // Usually your GitHub org/user name.
-  projectName: 'open-pocket', // Usually your repo name.
+  projectName: 'open-pocket-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
