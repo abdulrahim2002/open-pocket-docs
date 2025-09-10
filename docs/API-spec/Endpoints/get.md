@@ -160,7 +160,7 @@ Status: 200 OK
 - **has_image** – `1` if it has images, `2` if it's an image  
 - **has_video** – `1` if it has videos, `2` if it's a video  
 - **word_count** – Number of words in the article  
-- **tags** – JSON object of user tags  
+- **tags** – JSON object of user tags
 - **authors** – JSON object of authors  
 - **images** – JSON object of images  
 - **videos** – JSON object of videos  
@@ -170,6 +170,7 @@ Status: 200 OK
 # Best Practices
 
 ### Retrieving User's List
+
 - After retrieving a User's list, store the current time (provided in the response).  
 - Pass that time in the next request using the `since` parameter.  
 - This ensures only the changes since the last request are returned.  
