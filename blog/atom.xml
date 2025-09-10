@@ -8,15 +8,55 @@
     <subtitle>Open Pocket Blog</subtitle>
     <icon>https://abdulrahim2002.github.io/open-pocket-docs/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[Why secure cookies can pass through load balancer]]></title>
-        <id>https://abdulrahim2002.github.io/open-pocket-docs/blog/why-secure-cookies-can-pass-through-load-balancer/</id>
-        <link href="https://abdulrahim2002.github.io/open-pocket-docs/blog/why-secure-cookies-can-pass-through-load-balancer/"/>
+        <title type="html"><![CDATA[How secure cookies can pass through load balancer]]></title>
+        <id>https://abdulrahim2002.github.io/open-pocket-docs/blog/how-secure-cookies-can-pass-through-load-balancer/</id>
+        <link href="https://abdulrahim2002.github.io/open-pocket-docs/blog/how-secure-cookies-can-pass-through-load-balancer/"/>
         <updated>2025-09-08T18:15:22.000Z</updated>
-        <summary type="html"><![CDATA[how encrypted cookies are forwarded from load balancer to the client]]></summary>
-        <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-encrypted-cookies-are-forwarded-from-load-balancer-to-the-client">how encrypted cookies are forwarded from load balancer to the client<a href="https://abdulrahim2002.github.io/open-pocket-docs/blog/why-secure-cookies-can-pass-through-load-balancer/#how-encrypted-cookies-are-forwarded-from-load-balancer-to-the-client" class="hash-link" aria-label="Direct link to how encrypted cookies are forwarded from load balancer to the client" title="Direct link to how encrypted cookies are forwarded from load balancer to the client">​</a></h2>
-<p>with the proper configuration, cookies marked with Secure=true can be
-successfully transmitted and processed by your backend instances even
-when SSL is terminated at the load balancer.  How This Works</p>
+        <summary type="html"><![CDATA[How secure cookies pass through load balancer ?]]></summary>
+        <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-secure-cookies-pass-through-load-balancer-">How secure cookies pass through load balancer ?<a href="https://abdulrahim2002.github.io/open-pocket-docs/blog/how-secure-cookies-can-pass-through-load-balancer/#how-secure-cookies-pass-through-load-balancer-" class="hash-link" aria-label="Direct link to How secure cookies pass through load balancer ?" title="Direct link to How secure cookies pass through load balancer ?">​</a></h2>
+<p>Open-pocket's authentication system relies on cookies, more specifically
+encrypted cookies (also called cookie-sessions). These cookie session
+contain necessary information to identify and authenticate the user.</p>
+<p>Since, cookies are sent with requests by browser clients automatically,
+it makes for a seamless experience for users, in that they dont need to
+log in again and again.</p>
+<p>However, storing authentication information in a cookie is extremely
+risky and can land you in heavy waters real quick if you don't know what
+you are doing. Luckly, there are libraries that can do the heavylifting
+for us. I used
+<a href="https://github.com/fastify/fastify-secure-session" target="_blank" rel="noopener noreferrer">fastify-secure-session</a>,
+to securely encrypted and decrypt the cookie on the fly.  It uses,
+battle tested <a href="https://doc.libsodium.org/" target="_blank" rel="noopener noreferrer">lib sodium</a> for
+encryption/decryption.</p>
+<p>But even with this, I was not sure enough, so I added the following
+flags to my cookie:</p>
+<ol>
+<li><code>http only</code>: This will make your cookies inaccessible to browser
+javascript, so a malicious user cannot acesss the cookie even if he
+is able to inject javascript.</li>
+<li><code>secure: true</code>: This instructs the browser to only send the cookies
+over https protocol. Since, <code>https</code> encrypts traffic, hence data in
+transit is encrypted. This is extremely important when operating over
+insecure networks (which is the case with the internet, you never
+know you know).</li>
+<li><code>same site</code>: This settings instructs browser to only send cookies to
+my website.</li>
+</ol>
+<p>Looks good, but there's a big problem. As the application scales, it
+usually needs multiple computers (servers) to attend client requests.
+And since, we need multiple servers, we need a load balancer, that would
+intercept requests from public internet, forward it to an available
+machine, and relays back the response to the client.</p>
+<p>The problem is that load balancers usually perform something called SSL
+termination. Which basically means changing the protocol from <code>https</code> -&gt;
+<code>http</code>.</p>
+<p>Now in theory, when the load balancer changes the protocol and tries to
+forward the cookie with <code>secure=true</code> flag. The cookie will refuse to
+go, and without it, the backend server would break.</p>
+<p>But it turns out that it is not the case usually, with the proper
+configuration, cookies marked with <code>secure=true</code> can be successfully
+transmitted and processed by your backend instances even when SSL is
+terminated at the load balancer.  How This Works</p>
 <p>The key is that the Secure flag is about the client's connection, not
 the backend connection:</p>
 <p>Browser to Load Balancer: The client's browser only sends the Secure
