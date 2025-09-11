@@ -237,3 +237,15 @@ SELECT item_id FROM tags WHERE user_id=123 AND tag_name="xyz";
 | name        | VARCHAR(255)            | NOT NULL                           |
 | url         | TEXT                     |                                    |
 
+
+## domains
+
+
+| Attribute   | Data Type / Properties  | Constraints / Indexing            |
+|-------------|--------------------------|------------------------------------|
+| domain\_id  | BIGINT, Primary Key     | NOT NULL, AUTO INCREMENT, UNIQUE   |
+| name        | TEXT                    | NOT NULL                           |
+
+This parameter is require, since
+[`/add`](https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/add/#response-fields)
+returns it.
