@@ -21,6 +21,8 @@ All schemas need to ensure that we support required
 | given\_title             | TEXT                       |                                            |
 | resolved\_title          | TEXT                       |                                            |
 | resolved\_url            | TEXT                       |                                            |
+| domain\_id               | BIGINT, Foreign Key -> domains.domain\_id  |   Domain of given\_url     |
+| origin\_domain\_id       | BIGINT, Foreign Key -> domains.domain\_id |   Domain of resolved\_url  |
 | excerpt                  | TEXT                       |                                            |
 | is\_article              | BOOLEAN                    | DEFAULT false                              |
 | is\_index                | BOOLEAN                    | DEFAULT false                              |
