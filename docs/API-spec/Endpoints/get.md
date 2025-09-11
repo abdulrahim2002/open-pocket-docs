@@ -111,7 +111,6 @@ Status: 200 OK
   "list": {
     "229279689": {
       "item_id": "229279689",
-      "resolved_id": "229279689",
       "given_url": "http://www.grantland.com/blog/the-triangle/post/_/id/38347/ryder-cup-preview",
       "given_title": "The Massive Ryder Cup Preview - The Triangle Blog - Grantland",
       "favorite": "0",
@@ -148,7 +147,7 @@ Status: 200 OK
 # Response Fields
 
 - **item_id** – Unique identifier for the saved item (used in `/v3/modify`)  
-- **resolved_id** – Unique ID for the resolved URL (`0` = not processed yet)  
+- <b><s>resolved_id</s></b> (Depreciated) – Unique ID for the resolved URL (`0` = not processed yet)
 - **given_url** – The actual saved URL  
 - **resolved_url** – Final resolved URL (e.g., unshortened link)  
 - **given_title** – Title saved with the item  
