@@ -65,6 +65,7 @@ Status: 200 OK
 
 :::warning
 status is 0 for failure and 1 for success
+:::
 
 ## Error Handling
 
@@ -112,6 +113,7 @@ Note: If you are only adding a single item, the `/v1/add` endpoint should be use
 
 :::warning
 <s>striked</s> items are  **depreciated**
+:::
 
 ---
 
