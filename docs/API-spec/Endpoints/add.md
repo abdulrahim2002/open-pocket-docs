@@ -8,14 +8,17 @@ sidebar_position: 3
 
 Allowing users to add articles, videos, images and URLs to Pocket is
 most likely the first type of integration that you’ll want to build into
-your application. Adding items to Pocket is easy.  
+your application. Adding items to Pocket is easy.
 
 ---
 
 ## Required Permissions
 
-In order to use the /v3/add endpoint, your consumer key must have the
-**"Add"** permission.
+Your consumer key must have the **Add** permission.
+
+
+:::warning
+Consumer keys are not supported yet.
 
 ---
 
