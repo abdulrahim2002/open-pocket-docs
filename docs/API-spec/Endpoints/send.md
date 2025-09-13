@@ -4,11 +4,13 @@ sidebar_position: 2
 
 # send
 
-
 ## Pocket API: Modifying a User's Pocket Data
 
-Pocket’s `/v3/send` endpoint allows you to make a change or batch several
-changes to a user’s list or Pocket data.
+Make a single change or batch several changes to a user's pocket data.
+
+```
+/v1/send
+```
 
 ## Required Permissions
 
