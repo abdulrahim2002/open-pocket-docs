@@ -103,12 +103,15 @@ Note: If you are only adding a single item, the `/v1/add` endpoint should be use
 
 | Name                         | Type       | Optional  | Description                                   |
 | :---                         | :---       | :---      | :---                                          |
-| <s>item_id</s> (depreciated) | integer    | optional  | The id of the item to perform the action on.  |
-| <s>ref\_id </s> (depreciated)| integer    | optional  | A Twitter status id; this is used to show tweet attribution. |
+| <s>item_id</s>               | integer    | optional  | The id of the item to perform the action on.  |
+| <s>ref\_id </s>              | integer    | optional  | A Twitter status id; this is used to show tweet attribution. |
 | url                          | string     |           | The url of the item;                          |
-| tags                         | string     | optional  | A comma-delimited list of one or more tags. |
-| time | timestamp | optional | The time the action occurred. |
-| title | string | optional | The title of the item. |
+| tags                         | string     | optional  | A comma-delimited list of one or more tags.   |
+| <s>time</s>                  | timestamp  | optional  | The time the action occurred.                 |
+| title                        | string     | optional  | User supplied title of the item. This takes precedence over automatically found title |
+
+:::warning
+<s>striked</s> items are  **depreciated**
 
 ---
 
