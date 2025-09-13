@@ -97,9 +97,12 @@ detailed information on how to respond to errors.
 
 ### Action: add
 
+:::note
+If you are only adding a single item, the `/v1/add` endpoint should be used instead
+:::
+
 Adds a new item to the user's list.
 
-Note: If you are only adding a single item, the `/v1/add` endpoint should be used.
 
 #### JSON Array Parameters
 
