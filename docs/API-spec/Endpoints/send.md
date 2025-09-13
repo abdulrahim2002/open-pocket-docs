@@ -46,6 +46,7 @@ Here's how you send the encoded JSON array as part of the `/v3/send` call:
 
 :::warning
 sending data in URL parameters is not supported.
+:::
 
 If all actions were successful, you receive back a response with `status=1`
 along with `action_results` array with all values set to true. Otherwise, if
