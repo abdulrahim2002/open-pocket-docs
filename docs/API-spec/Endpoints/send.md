@@ -4,27 +4,17 @@ sidebar_position: 2
 
 # send
 
-## Pocket API: Modifying a User's Pocket Data
-
-Make a single change or batch several changes to a user's pocket data.
-
-```
-/v1/send
-```
-
-## Required Permissions
-
-In order to use the `/v3/send` endpoint, your consumer key must have the
-"Modify" permission.
-
-## Modifying a User's Pocket Data
-
-The `/v3/send` endpoint allows your application to send a single event or multiple events and actions that will modify the user's data in one call.
+The send endpoint allows you to make a single change or batch several changes
+to a user's pocket data. You can send these changes in so called "actions".
+Each action performs a specific change to the state of user's pocket data.  You
+can send multiple of these actions in a single call. Some of the operations may
+fail. This is indicated by an `action_results` array that contain true/false
+for each action performed in order in which they were sent. 
 
 ### Method URL
 
 ```
-https://getpocket.com/v3/send
+/v1/send
 ```
 
 ### Parameters
@@ -54,25 +44,32 @@ Here's an example of a JSON array calling the "archive" action:
 
 Here's how you send the encoded JSON array as part of the `/v3/send` call:
 
-```
-https://getpocket.com/v3/send?actions=%5B%7B%22action%22%3A%22archive%22%2C%22time%22%3A1348853312%2C%22item_id%22%3A229279689%7D%5D&access_token=[ACCESS_TOKEN]&consumer_key=[CONSUMER_KEY]
-``` 
+:::warning
+sending data in URL parameters is not supported.
 
-The response you receive back contains a status variable and an
-action\_results array that indicates which action had an issue if the
-status is 0 (indicating failure):
+If all actions were successful, you receive back a response with `status=1`
+along with `action_results` array with all values set to true. Otherwise, if
+some of the actions failed, `satus=0` and `aaction_results` array has atlease
+one false value.
 
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
 Status: 200 OK
 
-{"action_results":[true],"status":1}
+{
+    "status": 1,
+    "action_results": [true]
+}
 ```
+
+:::warning
+status is 0 for failure and 1 for success
 
 ## Error Handling
 
-View the Error and Response Headers Documentation for detailed information on how to respond to errors.
+View the [Error and Response](/docs/category/error-handling) Documentation for
+detailed information on how to respond to errors.
 
 ---
 
@@ -98,20 +95,20 @@ View the Error and Response Headers Documentation for detailed information on ho
 
 ### Action: add
 
-Add a new item to the user's list.
+Adds a new item to the user's list.
 
-Note: If you are only adding a single item, the `/v3/add` endpoint should be used.
+Note: If you are only adding a single item, the `/v1/add` endpoint should be used.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| item\_id | integer | | The id of the item to perform the action on. |
-| ref\_id | integer | optional | A Twitter status id; this is used to show tweet attribution. |
-| tags | string | optional | A comma-delimited list of one or more tags. |
+| Name                         | Type       | Optional  | Description                                   |
+| :---                         | :---       | :---      | :---                                          |
+| <s>item_id</s> (depreciated) | integer    | optional  | The id of the item to perform the action on.  |
+| <s>ref\_id </s> (depreciated)| integer    | optional  | A Twitter status id; this is used to show tweet attribution. |
+| url                          | string     |           | The url of the item;                          |
+| tags                         | string     | optional  | A comma-delimited list of one or more tags. |
 | time | timestamp | optional | The time the action occurred. |
 | title | string | optional | The title of the item. |
-| url | string | optional | The url of the item; provide this only if you do not have an item\_id. |
 
 ---
 
