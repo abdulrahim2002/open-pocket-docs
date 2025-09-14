@@ -255,11 +255,11 @@ Rename a tag. This affects all items with this tag.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| old\_tag | string | | The tag name that will be replaced. |
-| new\_tag | string | | The new tag name that will be added. |
-| time | timestamp | optional | The time the action occurred. |
+| Name          | Type      | Optional  | Description                           |
+| :---          | :---      | :---      | :---                                  |
+| old\_tag      | string    |           | The tag name that will be replaced.   |
+| new\_tag      | string    |           | The new tag name that will be added.  |
+| <s>time</s>   | timestamp | optional  | The time the action occurred.         |
 
 ---
 
