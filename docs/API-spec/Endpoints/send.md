@@ -174,10 +174,10 @@ Remove an item from the user's favorites.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| item\_id | integer | | The id of the item to perform the action on. |
-| time | timestamp | optional | The time the action occurred. |
+| Name        | Type      | Optional    | Description                   |
+| :---        | :---      | :---        | :---                          |
+| item\_id    | string    |             | The id of the item to perform the action on. |
+| <s>time</s> | timestamp | optional    | The time the action occurred. |
 
 ---
 
