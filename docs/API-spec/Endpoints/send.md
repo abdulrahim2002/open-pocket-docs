@@ -269,7 +269,7 @@ Delete a tag. This affects all items with this tag.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| tag | string | | The tag name that will be deleted. |
-| time | timestamp | optional | The time the action occurred.
+| Name          | Type      | Optional  | Description                           |
+| :---          | :---      | :---      | :---                                  |
+| tag           | string    |           | The tag name that will be deleted.    |
+| <s>time</s>   | timestamp | optional  | The time the action occurred.         |
