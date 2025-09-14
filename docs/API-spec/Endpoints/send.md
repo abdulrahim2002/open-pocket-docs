@@ -228,11 +228,11 @@ Replace all of the tags for an item with the one or more provided tags.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| item\_id | integer | | The id of the item to perform the action on. |
-| tags | string | | A comma-delimited list of one or more tags to add. |
-| <s>time</s> | timestamp | optional | The time the action occurred. |
+| Name          | Type      | Optional  | Description                                   |
+| :---          | :---      | :---      | :---                                          |
+| item\_id      | string    |           | The id of the item to perform the action on.  |
+| tags          | string    |           | A comma-delimited list of one or more tags to add. |
+| <s>time</s>   | timestamp | optional  | The time the action occurred.                 |
 
 ---
 
