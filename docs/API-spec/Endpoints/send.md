@@ -108,11 +108,11 @@ Adds a new item to the user's list.
 
 | Name                         | Type       | Optional  | Description                                   |
 | :---                         | :---       | :---      | :---                                          |
-| <s>item_id</s>               | integer    | optional  | The id of the item to perform the action on.  |
-| <s>ref\_id </s>              | integer    | optional  | A Twitter status id; this is used to show tweet attribution. |
 | url                          | string     |           | The url of the item;                          |
 | tags                         | string     | optional  | A comma-delimited list of one or more tags.   |
 | title                        | string     | optional  | User supplied title of the item. This takes precedence over automatically found title |
+| <s>item_id</s>               | integer    | optional  | The id of the item to perform the action on.  |
+| <s>ref\_id </s>              | integer    | optional  | A Twitter status id; this is used to show tweet attribution. |
 | <s>time</s>                  | timestamp  | optional  | The time the action occurred.                 |
 
 :::warning
@@ -127,10 +127,10 @@ Move an item to the user's archive.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| item\_id | integer | | The id of the item to perform the action on. |
-| time | timestamp | optional | The time the action occurred. |
+| Name          | Type      | Optional    | Description   |
+| :---          | :---      | :---        | :---          |
+| item\_id      | integer   |             | The id of the item to perform the action on. |
+| <s>time</s>   | timestamp | optional    | The time the action occurred. |
 
 ---
 
@@ -140,10 +140,10 @@ Move an item from the user's archive back into their unread list.
 
 #### JSON Array Parameters
 
-| Name | Type | Optional | Description |
-| :--- | :--- | :--- | :--- |
-| item\_id | integer | | The id of the item to perform the action on. |
-| time | timestamp | optional | The time the action occurred. |
+| Name      | Type      | Optional  | Description                   |
+| :---      | :---      | :---      | :---                          |
+| item\_id  | integer   |           | The id of the item to perform the action on. |
+| time      | timestamp | optional  | The time the action occurred. |
 
 ---
 
