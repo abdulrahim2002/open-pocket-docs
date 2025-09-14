@@ -129,8 +129,12 @@ Move an item to the user's archive.
 
 | Name          | Type      | Optional    | Description   |
 | :---          | :---      | :---        | :---          |
-| item\_id      | integer   |             | The id of the item to perform the action on. |
+| item\_id      | string    |             | The id of the item to perform the action on. |
 | <s>time</s>   | timestamp | optional    | The time the action occurred. |
+
+:::warning
+item\_id is no longer integer. It shall be supplied as a string.
+:::
 
 ---
 
